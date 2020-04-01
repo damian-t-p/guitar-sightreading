@@ -118,7 +118,7 @@ def fretnote(string, fret):
     return [note + str(octave) for note in  octave_list[halfsteps]]
 
 "Create a random staff according to specifications"
-def make_staff(strings, frets, repeats, bars_per_fret, **kwargs):
+def make_staff(strings, frets, repeats, bars_per_fret):
     full_notes = []
     
     for _  in range(repeats):
@@ -139,16 +139,20 @@ def range_parse(ran):
     else:
         return [int(n) for n in ran if n in '123456']
 
-def parse():
+def parse_cmd_args():
 
+    class Args:
+        def __init__(self, staff, filename):
+            self.staff = staff
+            self.filename = filename
+    
     # defaults
-    args = {
-        'strings' : range(1, 7),
-        'frets' : range(13),
-        'bars_per_fret' : 5,
-        'repeats' : 1,
-        'output' : 'staff.png'
-    }
+    args = Args({'strings' : range(1, 7),
+                 'frets' : range(13),
+                 'bars_per_fret' : 5,
+                 'repeats' : 1},
+                'staff.png')
+
 
     options = 's:f:p:b:r:o:'
     long_options = ['strings=', 'frets=', 'position=', 'bars=', 'repeats=', 'output=']
@@ -157,22 +161,21 @@ def parse():
     
     for o, a in options:
         if o in ('-s', '--strings'):
-            args['strings'] = range_parse(a)
+            args.staff['strings'] = range_parse(a)
         if o in ('-f', '--frets'):
-            args['frets'] = range_parse(a)
+            args.staff['frets'] = range_parse(a)
         if o in ('-p', '--position'):
-            args['frets'] = range(int(a), int(a)+4)
+            args.staff['frets'] = range(int(a), int(a)+4)
         if o in ('-b', '--bars'):
-            args['bars_per_fret'] = int(a)
+            args.staff['bars_per_fret'] = int(a)
         if o in ('-r', '--repeats'):
-            args['repeats'] = int(a)
+            args.staff['repeats'] = int(a)
         if o in ('-o', '--output'):
-            args['filename'] = a + '.png'
-            
+            args.filename = a + '.png'
 
     return args
 
 if __name__ == "__main__":
-    args = parse()
-    img = make_staff(**args)
-    img.save(args['filename'])
+    args = parse_cmd_args()
+    img = make_staff(**args.staff)
+    img.save(args.filename)
