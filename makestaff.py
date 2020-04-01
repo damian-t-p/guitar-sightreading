@@ -133,9 +133,11 @@ def make_staff(strings, frets, repeats, bars_per_fret, **kwargs):
 def range_parse(ran):
     if ':' in ran:
         limits = [int(n) for n in ran.split(':')]
-        return range(limits[0], limits[1] + 1)
+        a = limits[0]
+        b = limits[1]
+        return range(min(a,b), max(a,b) + 1)
     else:
-        return [int(n) for n in ran.split(',')]
+        return [int(n) for n in ran if n in '123456']
 
 def parse():
 
