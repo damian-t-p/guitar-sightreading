@@ -147,10 +147,10 @@ def parse():
         'frets' : range(13),
         'bars_per_fret' : 5,
         'repeats' : 1,
-        'filename' : 'staff.png'
+        'output' : 'staff.png'
     }
 
-    options = 's:f:p:b:r:n:'
+    options = 's:f:p:b:r:o:'
     long_options = ['strings=', 'frets=', 'position=', 'bars=', 'repeats=', 'filename=']
     
     options, arguments = getopt.getopt(sys.argv[1:], options, long_options)
@@ -166,7 +166,7 @@ def parse():
             args['bars_per_fret'] = int(a)
         if o in ('-r', '--repeats'):
             args['repeats'] = int(a)
-        if o in ('-n', '--filename'):
+        if o in ('-o', '--output'):
             args['filename'] = a + '.png'
             
 
