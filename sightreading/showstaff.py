@@ -2,18 +2,21 @@ from PIL import Image
 import os
 
 # Directories of note and string numbering symbols
-notepath = 'resources/staff-symbols/'
-stringpath = 'resources/string-numbers/'
+#notepath = 'resources/staff-symbols/'
+#stringpath = 'resources/string-numbers/'
+
+notepath = os.path.join(os.path.dirname(__file__), 'resources', 'staff-symbols')
+stringpath = os.path.join(os.path.dirname(__file__), 'resources', 'string-numbers')
 
 # Load all staff images from component directories
 notepics = {}
 for note in os.listdir(notepath):
-    with Image.open(notepath + note, mode = 'r') as notepic:
+    with Image.open(os.path.join(notepath, note), mode = 'r') as notepic:
         notepics[note[:-4]] = notepic.copy()
         
 stringpics = {}
 for string in os.listdir(stringpath):
-    with Image.open(stringpath + string, mode = 'r') as stringpic:
+    with Image.open(os.path.join(stringpath, string), mode = 'r') as stringpic:
         stringpics[int(string[:-4])] = stringpic.copy()
 
 "Split a list into sublists of size n, leaving last sublist smaller"

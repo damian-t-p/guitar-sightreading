@@ -1,8 +1,8 @@
 import sys
 import getopt
 
-import randnotes
-import showstaff
+from .randnotes import rand_staff
+from .showstaff import staff_image
 
 def range_parse(ran):
     if ':' in ran:
@@ -49,10 +49,11 @@ def parse_cmd_args():
 
     return args
 
-if __name__ == "__main__":
+def main():
+#if __name__ == "__main__":
     args = parse_cmd_args()
 
-    staffspec = randnotes.rand_staff(**args.staff)
-    staffimg = showstaff.staff_image(staffspec)
+    staffspec = rand_staff(**args.staff)
+    staffimg = staff_image(staffspec)
     
-    staffimg.save('data/' + args.filename)
+    staffimg.save(args.filename)
