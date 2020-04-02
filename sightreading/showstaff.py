@@ -53,16 +53,19 @@ def v_concat_img(imgs):
     return(concat)
 
 "Assemble note and string image"
-def get_pic(note):
+def get_pic(note, string_symbols):
     if type(note) == tuple:
-        return v_concat_img((notepics[note[0]], stringpics[note[1]]))
+        if string_symbols is True:
+            return v_concat_img((notepics[note[0]], stringpics[note[1]]))
+        else:
+            return notepics[note[0]]
     
     return notepics[note]
 
 "Assemble a list of notes into a full staff"
-def staff_image(lines):
+def staff_image(lines, string_symbols):
     line_imgs = []
     for line in lines:
-        line_imgs.append(h_concat_img([get_pic(note) for note in line]))
+        line_imgs.append(h_concat_img([get_pic(note, string_symbols) for note in line]))
     
     return v_concat_img(line_imgs)

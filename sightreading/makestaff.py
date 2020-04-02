@@ -16,8 +16,9 @@ def range_parse(ran):
 def parse_cmd_args():
 
     class Args:
-        def __init__(self, staff, filename):
+        def __init__(self, staff, img, filename):
             self.staff = staff
+            self.img = img
             self.filename = filename
     
     # defaults
@@ -25,11 +26,12 @@ def parse_cmd_args():
                  'frets' : range(13),
                  'bars_per_line' : 5,
                  'repeats' : 1},
+                {'string_symbols' : True},
                 'staff.png')
 
 
-    options = 's:f:p:b:r:o:'
-    long_options = ['strings=', 'frets=', 'position=', 'bars=', 'repeats=', 'output=']
+    options = 's:f:p:b:r:o:n'
+    long_options = ['strings=', 'frets=', 'position=', 'bars=', 'repeats=', 'output=', 'no-string-symbols']
     
     options, arguments = getopt.getopt(sys.argv[1:], options, long_options)
     
@@ -39,21 +41,23 @@ def parse_cmd_args():
         if o in ('-f', '--frets'):
             args.staff['frets'] = range_parse(a)
         if o in ('-p', '--position'):
-            args.staff['frets'] = range(int(a), int(a)+4)
+            args.staff['frets'] = range(int(a), int(a)+5)
+            args.img['string_symbols'] = False
         if o in ('-b', '--bars'):
             args.staff['bars_per_line'] = int(a)
         if o in ('-r', '--repeats'):
             args.staff['repeats'] = int(a)
+        if o in ('-n', '--no-string-symbols'):
+            args.img['string_symbols'] = False
         if o in ('-o', '--output'):
             args.filename = a + '.png'
 
     return args
 
 def main():
-#if __name__ == "__main__":
     args = parse_cmd_args()
 
     staffspec = rand_staff(**args.staff)
-    staffimg = staff_image(staffspec)
+    staffimg = staff_image(staffspec, **args.img)
     
     staffimg.save(args.filename)
