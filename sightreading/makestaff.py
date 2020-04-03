@@ -25,13 +25,14 @@ def parse_cmd_args():
     args = Args({'strings' : range(1, 7),
                  'frets' : range(13),
                  'bars_per_line' : 5,
-                 'repeats' : 1},
+                 'repeats' : 1,
+                 'diatonic' : False},
                 {'string_symbols' : True},
                 'staff.png')
 
 
-    options = 's:f:p:b:r:o:n'
-    long_options = ['strings=', 'frets=', 'position=', 'bars=', 'repeats=', 'output=', 'no-string-symbols']
+    options = 's:f:p:b:r:o:nd'
+    long_options = ['strings=', 'frets=', 'position=', 'bars=', 'repeats=', 'output=', 'no-string-symbols', 'diatonic']
     
     options, arguments = getopt.getopt(sys.argv[1:], options, long_options)
     
@@ -49,9 +50,11 @@ def parse_cmd_args():
             args.staff['repeats'] = int(a)
         if o in ('-n', '--no-string-symbols'):
             args.img['string_symbols'] = False
+        if o in ('-d', '--diatonic'):
+            args.staff['diatonic'] = True
         if o in ('-o', '--output'):
             args.filename = a + '.png'
-
+    
     return args
 
 def main():

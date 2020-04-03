@@ -52,12 +52,22 @@ def pad_line(chosen_notes, start=False, end=False):
     else:
         chosen_notes.append("end-bar")
 
+def is_sharp(note):
+    return '#' in note[0]
+
+def is_flat(note):
+    return 'b' in note[0]
+        
 "Create a random staff according to specifications"
-def rand_staff(strings, frets, repeats, bars_per_line):
+def rand_staff(strings, frets, repeats, bars_per_line, diatonic):
     full_notes = []
     
     for _  in range(repeats):
         notes = [(random.choice(fretnote(string, fret)), string)  for string in strings for fret in frets]
+
+        if diatonic is True:
+            notes = [note for note in notes if not is_sharp(note) and not is_flat(note)]
+        
         random.shuffle(notes)
         full_notes.extend(notes)
 
