@@ -2,6 +2,9 @@
  Create randomised sheet music to practice sight reading
 =========================================================
 
+.. image:: https://travis-ci.com/damian-t-p/guitar-sightreading.svg?branch=master
+    :target: https://travis-ci.com/damian-t-p/guitar-sightreading
+
 Introduction
 ============
 
