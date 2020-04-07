@@ -8,5 +8,6 @@ setup(name='sightreading',
       author_email='',
       license='MIT',
       packages=['sightreading'],
+      install_requires=['Pillow'],
       zip_safe=False,
       include_package_data=True)
