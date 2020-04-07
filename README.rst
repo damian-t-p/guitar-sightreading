@@ -6,7 +6,28 @@ Introduction
 ============
 
 This is a python command-line interface module that produces a randomised staff of sheet music with the purpose of learning the fretboard of a guitar.
+
 Users can choose strings, frets and positions to focus on as well as specifying if they would like to include sharps and flats.
+The chosen notes will be shuffled randomly and the resulting staff saved as a png.
+
+Example: position practice
+--------------------------
+
+Generate natural notes in seventh position without string numbering:
+
+``python -m sightreading -p7 -d -n -o seventh-position``
+
+.. image:: docs/seventh-position.png
+
+
+Example: string practice
+------------------------
+	   
+Generate notes on the fifth and sixth strings on frets 0 - 7
+
+``python -m sightreading -s56 -f0:9 -o low-strings``
+
+.. image:: docs/low-strings.png
 
 Installation
 ============
@@ -20,8 +41,8 @@ Usage
 By default, the module will produce a staff containing a random permutation of notes found on every string and frets 0 - 12 on the neck, as well as an indicator of which string they should be played on.
 This staff is saved to ``staff.png``
 
-Command line arguments:
------------------------
+Command line arguments
+----------------------
 
 * ``-b``, ``--bars NUM``: generate staff with ``NUM`` bars per line
   
