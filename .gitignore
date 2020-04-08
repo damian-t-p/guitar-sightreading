@@ -4,4 +4,4 @@
 __pycache__
 .pyc
 README.html
-.egg-info
+*.egg-info/**

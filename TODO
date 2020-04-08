@@ -1,0 +1,9 @@
+* Allow sharps only and flats only
+
+* Implement option allowing users to select key
+    + Improve internal note selection interface
+
+* Develop a principled way of drawing the staff
+    + Draw an extensible blank staff
+    + Overlay a transparent-background note over the staff
+    + Implement ledger lines properly
