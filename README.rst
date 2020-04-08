@@ -26,9 +26,9 @@ Generate natural notes in seventh position without string numbering:
 Example: string practice
 ------------------------
 	   
-Generate notes on the fifth and sixth strings on frets 0 - 7
+Generate notes on the fifth and sixth strings on frets 0 - 9
 
-``python -m sightreading -s56 -f0:9 -o low-strings``
+``python -m sightreading -s56 -f 0:9 -o low-strings``
 
 .. image:: docs/low-strings.png
 
@@ -55,9 +55,9 @@ Command line arguments
   
 * ``-n``, ``--no-string-symbols``: suppress string number symbols
   
-* ``-p``, ``--position NUM``: only include notes in ``NUM`` th position. This is defined as the frets between ``NUM`` and ``NUM + 5`` inclusive. Open strings are treated as zeroth frets.
-  
 * ``-o``, ``--output FILE``: save output to ``FILE``
+
+* ``-p``, ``--position NUM``: only include notes in ``NUM`` th position. This is defined as the frets between ``NUM`` and ``NUM + 5`` inclusive. Open strings are treated as zeroth frets.  
   
 * ``-r``, ``--repeats NUM``: repeat the randomisation ``NUM`` times in a single staff
   
@@ -69,6 +69,6 @@ Range specification
 The allowed strings and frets are specified passing a range of numbers to the ``-s`` and ``-f`` switches.
 The format of this range is either
 
-* a concatenated of desired numbers (eg. ``-s 136`` will select the first, third and sixth string), or
+* a concatenation of desired numbers (eg. ``-s 136`` will select the first, third and sixth string), or
 
-* an inclusive upper and lower limit separated by a colon. The order of the limits doesn't matter (eg, ``-f 7:12`` will select frets 7,8,9,10,11 and 12).
+* an inclusive upper and lower limit separated by a colon. The order of the limits doesn't matter (eg, ``-f 7:12`` and ``-f 12:7`` will both select frets 7, 8, 9, 10, 11 and 12).
