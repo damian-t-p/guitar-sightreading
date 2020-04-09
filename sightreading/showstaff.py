@@ -2,9 +2,6 @@ from PIL import Image
 import os
 
 # Directories of note and string numbering symbols
-#notepath = 'resources/staff-symbols/'
-#stringpath = 'resources/string-numbers/'
-
 notepath = os.path.join(os.path.dirname(__file__), 'resources', 'staff-symbols')
 stringpath = os.path.join(os.path.dirname(__file__), 'resources', 'string-numbers')
 
